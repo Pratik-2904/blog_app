@@ -12,12 +12,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 // TO initialize the supabase make main asynchronous
 void main() async {
   //Always use this to endure flutter bindings are proper
-  //if there are any awat or synchronous methods before runApp
+  //if there are any await or synchronous methods before runApp
   WidgetsFlutterBinding.ensureInitialized();
-  //use await to initialize the supdabase
-  //Gives intialize the supabase for later use thus strore in a variable
+  //use await to initialize the supabase
+  //Gives initialize the supabase for later use thus store in a variable
   final supabase = await Supabase.initialize(
-    //Spabase Project Url
+    //Supabase Project Url
     url: AppSecrets.supabaseUrl,
     //Supabase api key
     anonKey: AppSecrets.supabaseAnonKey,

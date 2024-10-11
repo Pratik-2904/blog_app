@@ -38,7 +38,9 @@ dependencies:
   fpdart: ^1.1.0
   supabase_flutter: ^2.7.0
   flutter_bloc: ^8.1.6
-  path_provider: ^2.1.4
+  path_provider_android: ^2.2.12
+#  path_provider: ^2.1.4
+#  path_provider_android: ^2.2.0
 
 dev_dependencies:
   flutter_test:
