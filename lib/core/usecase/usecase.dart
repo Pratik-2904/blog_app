@@ -2,7 +2,7 @@ import 'package:blog_app/core/error/failures.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract interface class Usecase<SuccessType, Params> {
-  //EveryUsecase Should Hva eonly one function
+  //EveryUsecase Should Have only one function
   //usecases do only one task ans expose only one methos to the outcode
 
   //Sucess cannot be the String it Could be anythong in this case it could be blog thus

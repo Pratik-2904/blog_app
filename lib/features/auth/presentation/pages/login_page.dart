@@ -33,6 +33,7 @@ class _LogInPageState extends State<LogInPage> {
         padding: const EdgeInsets.all(15.0),
         child: Form(
           key: formKey,
+
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,26 +49,33 @@ class _LogInPageState extends State<LogInPage> {
                 hintText: "Email",
                 controller: emailController,
               ),
+
               const SizedBox(
                 height: 15,
               ),
+
               AuthField(
                 hintText: "Password",
                 controller: passwordController,
                 isObscureText: true,
               ),
+
               const SizedBox(height: 20),
+
               AuthGradientButton(
                 buttonText: "LogIn",
-                onTap: (){},
+                onTap: () {},
               ),
+
               const SizedBox(
                 height: 20,
               ),
+
               GestureDetector(
                 onTap: () {
                   Navigator.push(context, LogInPage.route());
                 },
+
                 child: RichText(
                   text: TextSpan(
                       text: "Don't have an account? ",
@@ -82,8 +90,10 @@ class _LogInPageState extends State<LogInPage> {
                                     color: AppPallete.gradient2,
                                     fontWeight: FontWeight.bold))
                       ]),
+
                 ),
               )
+              
             ],
           ),
         ),
