@@ -42,12 +42,11 @@ class _SignupPageState extends State<SignupPage> {
           padding: const EdgeInsets.all(15.0),
           child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
-              if(state is AuthFailure){
+              if (state is AuthFailure) {
                 showSnackBar(context, state.message);
               }
             },
             builder: (context, state) {
-
               if (state is AuthLoading) {
                 return const Loader();
               }
@@ -97,7 +96,15 @@ class _SignupPageState extends State<SignupPage> {
                               password: passwordController.text.trim()));
 
                           //navigate to the login Page
-                          Navigator.push(context, SignupPage.route());
+                          if (state is AuthSuccess) {
+                            showSnackBar(context, "Sign Up Successful");
+
+                            // add the delay to the navigation
+                            Future.delayed(const Duration(seconds: 2), () {
+                              // ignore: use_build_context_synchronously
+                              Navigator.push(context, LogInPage.route());
+                            });
+                          }
                         }
                       },
                     ),
