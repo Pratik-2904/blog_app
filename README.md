@@ -1,16 +1,22 @@
-# blog_app
+# Flutter Blog Application 📚  
 
-A new Flutter project.
+A feature-rich blog application built with **Flutter** using **Clean Architecture** and powered by **Supabase** for seamless data management. The application provides both **online** and **offline** access to blogs, ensuring users can stay informed anytime, anywhere.  
 
-## Getting Started
+## Features 🌟  
+- **Online Blog Access**: Fetch the latest blogs in real-time from Supabase.  
+- **Offline Mode**: Access previously viewed blogs even without an internet connection.  
+- **Clean Architecture**: Ensures maintainable, scalable, and testable code.  
+- **Authentication**: Secure user login and registration.  
+- **Dynamic UI**: Responsive and visually appealing interface for a seamless user experience.  
+- **Local Storage**: Caches blogs for offline access using local database management.  
 
-This project is a starting point for a Flutter application.
+## Tech Stack 🛠️  
+- **Flutter**: For building a cross-platform mobile application.  
+- **Clean Architecture**: Ensures separation of concerns and modular code.  
+- **Supabase**: Backend-as-a-Service for database and authentication.  
+- **Hive/SQLite**: For offline storage of blog data.  
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Getting Started 🚀  
+1. Clone this repository:  
+   ```bash  
+   git clone https://github.com/Pratik-2904/blog_app  
