@@ -24,7 +24,8 @@ void main() async {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
-        create: (_) => serviceLocator<AuthBloc>(), // given datatype to have the service locator select the dependency
+        create: (_) => serviceLocator<
+            AuthBloc>(), // given datatype to have the service locator select the dependency
         // AuthBloc(
         //     userSignUp: UserSignUp(AuthRepositoryImpl(
         //         AuthRemoteDataSourceImpl(supabase.client))))),
@@ -34,11 +35,21 @@ void main() async {
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AuthBloc>().add(AuthIsUserLoggedIn());
+  }
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

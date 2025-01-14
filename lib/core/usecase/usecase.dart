@@ -12,3 +12,5 @@ abstract interface class Usecase<SuccessType, Params> {
   //Thus defining generic parameters
   Future<Either<Failure, SuccessType>> call(Params params); //this call function is the unique functio when its in the classes
 }
+
+class NoParams{}
