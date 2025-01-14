@@ -19,4 +19,15 @@ A feature-rich blog application built with **Flutter** using **Clean Architectur
 ## Getting Started 🚀  
 1. Clone this repository:  
    ```bash  
-   git clone https://github.com/Pratik-2904/blog_app  
+   git clone https://github.com/Pratik-2904/blog_app
+2. Navigate to the project directory:  
+   ```bash  
+   cd flutter-blog-app  
+3. Install Dependency:
+   ```bash
+   flutter pub get
+4. Run the App:
+   ```bash
+   flutter run
+   
+   
