@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:blog_app/core/comman/widgets/loader.dart';
 import 'package:blog_app/core/theme/app_pallate.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
@@ -44,6 +46,11 @@ class _SignupPageState extends State<SignupPage> {
             listener: (context, state) {
               if (state is AuthFailure) {
                 showSnackBar(context, state.message);
+              } else if (state is AuthSuccess) {
+                showSnackBar(context, "Sign Up Successful");
+                Future.delayed(const Duration(seconds: 2), () {
+                  Navigator.push(context, LogInPage.route());
+                });
               }
             },
             builder: (context, state) {
@@ -94,17 +101,6 @@ class _SignupPageState extends State<SignupPage> {
                               name: nameController.text.trim(),
                               email: emailController.text.trim(),
                               password: passwordController.text.trim()));
-
-                          //navigate to the login Page
-                          if (state is AuthSuccess) {
-                            showSnackBar(context, "Sign Up Successful");
-
-                            // add the delay to the navigation
-                            Future.delayed(const Duration(seconds: 2), () {
-                              // ignore: use_build_context_synchronously
-                              Navigator.push(context, LogInPage.route());
-                            });
-                          }
                         }
                       },
                     ),

@@ -1,4 +1,4 @@
-import 'package:blog_app/features/auth/domain/entities/user.dart';
+import 'package:blog_app/core/comman/entities/user.dart';
 
 class Usermodel extends User {
   Usermodel({
@@ -25,5 +25,19 @@ class Usermodel extends User {
         email: json['email'] ?? 'Not Found',
       );
     }
+
+  // All above thuse is final is not chnagable thus creating copywith method to change the values
+    Usermodel copyWith({
+    String? id,
+    String? name,
+    String? email,
+  }) {
+    return Usermodel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+    );
+  }
+
 }
 

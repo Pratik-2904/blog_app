@@ -1,6 +1,6 @@
 //interfaces are used to define the methods that class must implement
 import 'package:blog_app/core/error/failures.dart';
-import 'package:blog_app/features/auth/domain/entities/user.dart';
+import 'package:blog_app/core/comman/entities/user.dart';
 import 'package:fpdart/fpdart.dart';
 
 
