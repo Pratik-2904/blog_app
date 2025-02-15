@@ -8,6 +8,7 @@ import 'package:blog_app/features/auth/domain/usecases/current_user.dart';
 import 'package:blog_app/features/auth/domain/usecases/user_log_in.dart';
 import 'package:blog_app/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:blog_app/features/blog/data/datasources/blog_local_datasource.dart';
 import 'package:blog_app/features/blog/data/datasources/blog_remote_datasource.dart';
 import 'package:blog_app/features/blog/data/repositories/blog_repository_impl.dart';
 import 'package:blog_app/features/blog/domain/repositories/blog_repository.dart';
@@ -15,7 +16,9 @@ import 'package:blog_app/features/blog/domain/usecases/get_all_blogs.dart';
 import 'package:blog_app/features/blog/domain/usecases/upload_blog.dart';
 import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final serviceLocator = GetIt.instance; // initialization of getit
@@ -32,11 +35,15 @@ Future<void> initDependencies() async {
     anonKey: AppSecrets.supabaseAnonKey,
   );
 
+  Hive.defaultDirectory = (await getApplicationDocumentsDirectory()).path;
+
   serviceLocator.registerLazySingleton(
     () => supabase.client,
   ); // used whena single object needs to be used not the new everytime
 
   serviceLocator.registerFactory(() => InternetConnection());
+
+  serviceLocator.registerLazySingleton(() => Hive.box(name: 'blogs'));
 
   //core
   serviceLocator.registerLazySingleton(
@@ -93,6 +100,7 @@ void _initAuth() {
       appUserCubit: serviceLocator()));
 }
 
+//blogs initialization
 void _initBlog() {
   //DataSources
   serviceLocator.registerFactory<BlogRemoteDataSource>(
@@ -101,9 +109,17 @@ void _initBlog() {
     ),
   );
 
+  serviceLocator.registerFactory<BlogLocalDatasource>(
+    () => BlogLocalDatasourceImpl(
+      serviceLocator(),
+    ),
+  );
+
   //Data rep
   serviceLocator.registerFactory<BlogRepository>(
     () => BlogRepositoryImpl(
+      serviceLocator(),
+      serviceLocator(),
       serviceLocator(),
     ),
   );
@@ -121,7 +137,6 @@ void _initBlog() {
     ),
   );
 
-
   //for the bloc
   serviceLocator.registerLazySingleton(
     () => BlogBloc(
@@ -129,5 +144,4 @@ void _initBlog() {
       uploadBlog: serviceLocator(),
     ),
   );
-
 }
